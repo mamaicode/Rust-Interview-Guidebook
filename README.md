@@ -1,2 +1,2 @@
-# Rust-job-interview-handbook
-A curated list of real Rust interview questions from personal experience
+# Rust Interview Guidebook
+A curated list of real Rust interview questions
