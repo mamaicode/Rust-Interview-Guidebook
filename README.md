@@ -1,3 +1,6 @@
+# Rust-job-interview-handbook
+A curated list of real Rust interview questions from personal experience
+
 ### 1. Whats the difference between String vs &str?
 
 ### 2. What is a borrow checker in Rust?
@@ -43,16 +46,16 @@ fn main() {
 }
 
 ### 12. Can you create Macro with Arguments?
-### A macro named `print_message`
+// A macro named `print_message`
 macro_rules! print_message {
-    ### Match rule that takes an argument expression
+    // Match rule that takes an argument expression
     ($message:expr) => {
         println!("{}", $message)
     };
 }
 
 fn main() {
-    ### Call the macro with an argument
+    // Call the macro with an argument
     print_message!("I am learning Rust!");
 }
 
@@ -145,7 +148,7 @@ async fn main() {
 use serde_json::{Result, Value};
 
 fn untyped_example() -> Result<()> {
-    ### Some JSON input data as a &str. Maybe this comes from the user.
+    // Some JSON input data as a &str. Maybe this comes from the user.
     let data = r#"
         {
             "name": "John Doe",
@@ -156,30 +159,30 @@ fn untyped_example() -> Result<()> {
             ]
         }"#;
 
-    ### Parse the string of data into serde_json::Value.
+    // Parse the string of data into serde_json::Value.
 
-    ### Access parts of the data by indexing with square brackets
+    // Access parts of the data by indexing with square brackets
 
 }
 
 28. Consider the following code:
 
-###/ An empty generic representation of a struct. It represents a struct with no fields.
+// An empty generic representation of a struct. It represents a struct with no fields.
 pub struct Empty;
 
-###/ A generic representation of a struct with many fields. For example, a struct can be
-###/ represented as `Field<usize, Field<String, Empty>>`.
+// A generic representation of a struct with many fields. For example, a struct can be
+// represented as `Field<usize, Field<String, Empty>>`.
 pub struct Field<FirstField, RestOfFields>(pub FirstField, pub RestOfFields);
 
-###/ Trait for any structure that can be converted to generic representation.
-###/ For example, generic representation of `(usize, String)` is `Field<usize, Field<String, Empty>>`.
+// Trait for any structure that can be converted to generic representation.
+// For example, generic representation of `(usize, String)` is `Field<usize, Field<String, Empty>>`.
 pub trait HasGenericRepr {
     type GenericRepr;
 }
 
 pub type GenericRepr<T> = <T as HasGenericRepr>::GenericRepr;
 
-###/ Trait allowing converting any struct to its generic representation.
+// Trait allowing converting any struct to its generic representation.
 pub trait IntoGenericRepr: HasGenericRepr {
     fn into_generic_repr(self) -> GenericRepr<Self>;
 }
@@ -191,7 +194,7 @@ Implement the following things:
     Method map which will allow mapping any function on all fields of a struct and return the struct itself. For example, it should be possible to call (1, "hello").map(...) with a function format!("{t}!") to get ("1!", "hello!"). How the function is passed to the map method is up to you (it can be passed as a closure, as a structure representing that function, etc.).
 
 
-29. Explain the following code and explain what CORS are:
+###29. Explain the following code and explain what CORS are:
 
 {
     let link_repository = LinksRepository {
