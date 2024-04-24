@@ -1,17 +1,11 @@
-# Rust Interview Guidebook
-A curated list of real Rust interview questions
+// 1. Whats the difference between String vs &str?
 
-# Rust Interview Guidebook
-A curated list of real Rust interview questions
+// 2. What is a borrow checker in Rust?
 
-1. Whats the difference between String vs &str?
-2. What is a borrow checker in Rust?
-3. Does Rust have a standard async runtime?
+// 3. Does Rust have a standard async runtime?
 
-
-4. Explain the following code:
+// 4. Explain the following code:
 #[stable(feature = "rust1", since = "1.0.0")]
-
 pub fn spawn<F, T>(f: F) -> JoinHandle<T>
 where
     F: FnOnce() -> T,
@@ -21,24 +15,22 @@ where
     Builder::new().spawn(f).expect("failed, cannot spawn the thread")
 }
 
-6. What can you do in unsafe block?
+// 6. What can you do in unsafe block?
 
-7. Dereference a raw pointer:
+// 7. Dereference a raw pointer:
+let original: u32 = 23;
+let ptr = &original as *const u32;
+// dereference a raw pointer on this line
 
-    let original: u32 = 23;
-    let ptr = &original as *const u32;
-    // dereference a raw pointer on this line
+println!("{value}");
 
-    println!("{value}")
+// 8. Describe dynamic vs static dispatch
 
-8. Describe dynamic vs static dispatch
+// 9. There have been deadlocks noticed in a component of a service. How would you reduce/remove the possibility of deadlock?
 
-9. There have been deadlocks noticed in a component of a service. How would you reduce/remove the possibility of deadlock?
+// 10. What are macros? What kind of macros are there and what are the differences?
 
-10. What are macros? What kind of macros are there and what are the differences?
-
-11. Write a macro where it takes () and returns some number X
-Example:
+// 11. Write a macro where it takes () and returns some number X
 macro_rules! give_six {
     () => {
         6
@@ -50,7 +42,7 @@ fn main() {
     println!("{}", six);
 }
 
-12. Can you create Macro with Arguments?
+// 12. Can you create Macro with Arguments?
 // A macro named `print_message`
 macro_rules! print_message {
     // Match rule that takes an argument expression
@@ -64,7 +56,7 @@ fn main() {
     print_message!("I am learning Rust!");
 }
 
-13. Is the following code safe? If not what would you change?
+// 13. Is the following code safe? If not what would you change?
 use bumpalo::Bump;
 
 pub type TokenVec<'s> = Vec<Token, &'s Bump>;
@@ -103,17 +95,17 @@ impl<'s> LexerModel<'s> {
     }
 }
 
-14. Describe the Send and Sync traits in Rust and explain their significance in concurrent programming.
+// 14. Describe the Send and Sync traits in Rust and explain their significance in concurrent programming.
 
-15. How do you estimating coding tasks? What do you do if you misgudged your task and you are late?
+// 15. How do you estimate coding tasks? What do you do if you misjudge your task and you are late?
 
-16. What can you build with Tokio/Why would you use Tokio?
+// 16. What can you build with Tokio/Why would you use Tokio?
 
-17. What is the difference between threads and async programming?
+// 17. What is the difference between threads and async programming?
 
-18. What's the difference between "impl Trait" vs "T: Trait" vs "Box<dyn Trait>" (in function return position)?
+// 18. What's the difference between "impl Trait" vs "T: Trait" vs "Box<dyn Trait>" (in function return position)?
 
-19. What happens if I run this code:
+// 19. What happens if I run this code:
 fn main() {
     let mut owned_string: String = "hello ".to_owned();
     let borrowed_string: &str = "world";
@@ -121,12 +113,13 @@ fn main() {
     owned_string.push_str(borrowed_string);
     println!("{}", owned_string);
 }
-So what can we say about the difference between String and Str?
+// So what can we say about the difference between String and Str?
 
-22.Have you used docker for development?
-23. write an example of struct, enum, impl and trait
-24. Can we pringln!("x={}", x); in this code:
+// 22. Have you used Docker for development?
 
+// 23. Write an example of struct, enum, impl, and trait
+
+// 24. Can we println!("x={}", x); in this code:
 fn main() {
     let x = String::from("Hi there! I'm irine");
     let y = x;
@@ -134,7 +127,7 @@ fn main() {
     println!...
 }
 
-25.
+// 25. What is the output of this code?
 async fn say_world() {
     println!("world");
 }
@@ -146,11 +139,9 @@ async fn main() {
     op.await;
 }
 
-what is the output?
+// 26. What is serde?
 
-26. What is serde?
-
-27. Finish the commented section
+// 27. Finish the commented section
 use serde_json::{Result, Value};
 
 fn untyped_example() -> Result<()> {
@@ -171,11 +162,7 @@ fn untyped_example() -> Result<()> {
 
 }
 
-
-
-Extra:
-
-Consider the following code:
+28. Consider the following code:
 
 /// An empty generic representation of a struct. It represents a struct with no fields.
 pub struct Empty;
@@ -204,10 +191,9 @@ Implement the following things:
     Method map which will allow mapping any function on all fields of a struct and return the struct itself. For example, it should be possible to call (1, "hello").map(...) with a function format!("{t}!") to get ("1!", "hello!"). How the function is passed to the map method is up to you (it can be passed as a closure, as a structure representing that function, etc.).
 
 
+29. Explain the following code and explain what CORS are:
 
-
-EXPLAIN THE FOLLOWING CODE / WHAT ARE CORS?
-
+{
     let link_repository = LinksRepository {
         db_connection: db_conn.clone(),
     };
