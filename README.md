@@ -8,6 +8,7 @@ A curated list of real Rust interview questions from personal experience
 ### 3. Does Rust have a standard async runtime?
 
 ### 4. Explain the following code:
+```
 #[stable(feature = "rust1", since = "1.0.0")]
 pub fn spawn<F, T>(f: F) -> JoinHandle<T>
 where
@@ -17,15 +18,17 @@ where
 {
     Builder::new().spawn(f).expect("failed, cannot spawn the thread")
 }
+```
 
 ### 6. What can you do in unsafe block?
 
 ### 7. Dereference a raw pointer:
+```
 let original: u32 = 23;
 let ptr = &original as *const u32;
-### dereference a raw pointer on this line
-
+// dereference a raw pointer on this line
 println!("{value}");
+```
 
 ### 8. Describe dynamic vs static dispatch
 
@@ -34,6 +37,8 @@ println!("{value}");
 ### 10. What are macros? What kind of macros are there and what are the differences?
 
 ### 11. Write a macro where it takes () and returns some number X
+```
+//Example
 macro_rules! give_six {
     () => {
         6
@@ -44,8 +49,9 @@ fn main() {
     let six = give_six!();
     println!("{}", six);
 }
-
+```
 ### 12. Can you create Macro with Arguments?
+```
 // A macro named `print_message`
 macro_rules! print_message {
     // Match rule that takes an argument expression
@@ -58,14 +64,16 @@ fn main() {
     // Call the macro with an argument
     print_message!("I am learning Rust!");
 }
+```
 
 ### 13. Is the following code safe? If not what would you change?
+```
 use bumpalo::Bump;
 
 pub type TokenVec<'s> = Vec<Token, &'s Bump>;
 
-### We want the [`Lexer`] to own the allocator because this is an internal
-### design that should not be exposed to the users.
+// We want the [`Lexer`] to own the allocator because this is an internal
+// design that should not be exposed to the users.
 #[repr(C)]
 pub struct Lexer<'s> {
     model: LexerModel<'s>,
@@ -97,6 +105,7 @@ impl<'s> LexerModel<'s> {
         Self {input, iterator, output, state}
     }
 }
+```
 
 ### 14. Describe the Send and Sync traits in Rust and explain their significance in concurrent programming.
 
@@ -109,6 +118,7 @@ impl<'s> LexerModel<'s> {
 ### 18. What's the difference between "impl Trait" vs "T: Trait" vs "Box<dyn Trait>" (in function return position)?
 
 ### 19. What happens if I run this code:
+```
 fn main() {
     let mut owned_string: String = "hello ".to_owned();
     let borrowed_string: &str = "world";
@@ -116,21 +126,25 @@ fn main() {
     owned_string.push_str(borrowed_string);
     println!("{}", owned_string);
 }
-### So what can we say about the difference between String and Str?
+So what can we say about the difference between String and Str?
+```
 
 ### 22. Have you used Docker for development?
 
 ### 23. Write an example of struct, enum, impl, and trait
 
 ### 24. Can we println!("x={}", x); in this code:
+```
 fn main() {
     let x = String::from("Hi there! I'm irine");
     let y = x;
 
     println!...
 }
+```
 
 ### 25. What is the output of this code?
+```
 async fn say_world() {
     println!("world");
 }
@@ -141,10 +155,12 @@ async fn main() {
     println!("hello");
     op.await;
 }
+```
 
 ### 26. What is serde?
 
 ### 27. Finish the commented section
+```
 use serde_json::{Result, Value};
 
 fn untyped_example() -> Result<()> {
@@ -164,9 +180,10 @@ fn untyped_example() -> Result<()> {
     // Access parts of the data by indexing with square brackets
 
 }
+```
 
-28. Consider the following code:
-
+### 28. Consider the following code:
+```
 // An empty generic representation of a struct. It represents a struct with no fields.
 pub struct Empty;
 
@@ -186,16 +203,14 @@ pub type GenericRepr<T> = <T as HasGenericRepr>::GenericRepr;
 pub trait IntoGenericRepr: HasGenericRepr {
     fn into_generic_repr(self) -> GenericRepr<Self>;
 }
-
+```
 Implement the following things:
+Ability to convert tuples of any types to their generic representation.
+Method first_field_ref which will return the reference to the first field of any generic representation and any structure that implements IntoGenericRepr. For example, it should be possible to call (1, "hello").first_field(), and Field(1, Field("hello", Empty)).first_field(), which should return &1.
+Method map which will allow mapping any function on all fields of a struct and return the struct itself. For example, it should be possible to call (1, "hello").map(...) with a function format!("{t}!") to get ("1!", "hello!"). How the function is passed to the map method is up to you (it can be passed as a closure, as a structure representing that function, etc.).
 
-    Ability to convert tuples of any types to their generic representation.
-    Method first_field_ref which will return the reference to the first field of any generic representation and any structure that implements IntoGenericRepr. For example, it should be possible to call (1, "hello").first_field(), and Field(1, Field("hello", Empty)).first_field(), which should return &1.
-    Method map which will allow mapping any function on all fields of a struct and return the struct itself. For example, it should be possible to call (1, "hello").map(...) with a function format!("{t}!") to get ("1!", "hello!"). How the function is passed to the map method is up to you (it can be passed as a closure, as a structure representing that function, etc.).
-
-
-###29. Explain the following code and explain what CORS are:
-
+### 29. Explain the following code and explain what CORS are:
+```
 {
     let link_repository = LinksRepository {
         db_connection: db_conn.clone(),
@@ -222,4 +237,4 @@ Implement the following things:
     .run()
     .await
 }
-
+```
